@@ -1,0 +1,16 @@
+{
+    "ui_ui_control": {
+        "label": {
+            "name": "名称",
+	    "output": "输出"
+        },
+        "placeholder": {
+            "name": "名称"
+        },
+	"events": {
+	  "all": "连接、丢失、更改选项卡或组事件",
+	  "change": "仅更改选项卡或组事件",
+	  "connect": "仅连接事件"
+	}
+    }
+}

@@ -1,0 +1,22 @@
+<script type="text/html" data-help-name="ui_ui_control">
+    <p>允许对面板进行动态控制。</p>
+    <p>默认功能是更改当前显示的选项卡。<code>msg.payload</code>应该是<code>{“tab”：“my_tab_name”}</code>形式的对象，或者只是要显示的选项卡或链接的<b>选项卡名称</b>或<b>数字索引</b>（从0开始）。</p>
+    <p>发送空白选项卡名称“”将刷新当前页面。您还可以为下一个标签发送“+1”，为上一个标签发“-1”。</p>
+    <p>面板页面（即“选项卡”）可以通过发送一个<code>msg.payload</code>对象来控制，该对象的格式为<pre>{“tabs”：{“hide”：“tab_name_to_hide”，“disable”：[“secret_tab”，“unused_suff”]}</pre>。
+    有两种切换状态可供选择：<b>显示</b>/<b>隐藏</b>和<b>启用</b>/禁用</b></p>
+    <p>单个部件组的可见性可以通过有效载荷来控制，例如
+    <pre>{"group": {"hide": ["tab_name_group_name_with_underscores"], "show": ["reveal_another_group"], "focus": true}}</pre>
+    其中<b>focus</b>是可选的，如果需要，它将使屏幕滚动显示该组。
+    您还可以使用属性“open”和“close”来设置用户可以控制的组的状态。组名是组的ID，通常由<i>选项卡名</i>加上<i>组名</i>组成，并用下划线替换所有空格。</p>
+    <p>当任何浏览器客户端连接或断开连接、更改选项卡或展开或折叠组时，此节点将发出<code>msg</code>，其中包含:</p>
+    <ul>
+    <li><code>payload</code> - <i>连接</i>, <i>丢失</i>, <i>更改</i>, or <i>组</i>.
+    <li><code>socketid</code> - 套接字的ID（每次浏览器重新加载页面时，该ID都会更改）。
+    <li><code>socketip</code> - 连接发起的ip地址。
+    <li><code>tab</code> - 选项卡的编号。（仅适用于“更改”事件）。
+    <li><code>name</code> - 选项卡的名称。（仅适用于“更改”事件）。
+    <li><code>group</code> - 组的名称。（仅适用于“组”活动）。
+    <li><code>open</code> - 组的状态。（仅适用于“组”活动）
+    </ul>
+    <p>可选-仅报告连接事件-可用于触发向新客户端重新发送数据，而无需过滤其他事件。</p>
+</script>

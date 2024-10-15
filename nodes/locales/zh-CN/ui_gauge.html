@@ -1,0 +1,10 @@
+<script type="text/html" data-help-name="ui_gauge">
+    <p>将仪表类型部件添加到用户界面。</p>
+    <p>在<code>msg.awnload</code>中搜索数字<i>Value</i>，并根据以下格式进行格式化定义的<b>Value Format</b>，然后可以使用 <a href=“https://docs.angularjs.org/api/ng/filter“target=”_blank“>角度过滤器</a>。</p>
+    <p>例如：<code>{{value|number:1}%</code>将把值四舍五入到小数点后一位，并附加一个%符号。</p>
+    <p>可以指定3个扇区中每个扇区的颜色，仪表将在它们之间混合。颜色应以十六进制（#rrggbb）格式指定。</p>
+    <p>如果为扇区指定数字，则每个扇区的颜色都会发生变化。如果没有指定，颜色将在整个范围内混合。</p>
+    <p>该仪表有几种模式。常规仪表、圆环、指南针和波浪。</p>
+    <p>标签也可以通过设置消息属性来设置属性名称的字段，例如<code>{{msg.topic}}</code>。</p>
+    <p>如果指定了<b>Class</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class</p>
+</script>

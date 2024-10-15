@@ -1,0 +1,16 @@
+{
+    "ui_group" : {
+        "label" : {
+            "name" : "名称",
+            "tab" : "选项卡",
+            "width" : "宽",
+            "default" : "默认",
+            "group" : "组",
+            "unassigned" : "未指定",
+            "className": "类",
+            "classNamePlaceholder": "部件的可选CSS类名"
+        },
+        "display-name" : "显示组名称",
+        "collapse-name" : "允许组折叠"
+    }
+}

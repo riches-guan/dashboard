@@ -1,0 +1,102 @@
+{
+    "ui_base": {
+        "label": {
+            "dashboard": "面板",
+            "category": "面板",
+            "title": "标题",
+            "options": "选项",
+            "date-format": "日期格式",
+            "sizes": "尺寸",
+            "horizontal": "水平方向",
+            "vertical": "垂直方向",
+            "widget-size": "1x1 部件大小",
+            "widget-spacing": "部件间距",
+            "group-padding": "组 填充",
+            "group-spacing": "组 间距",
+            "layout": "布局",
+            "angular": "角度",
+            "theme": "主题",
+            "site": "站点"
+        },
+        "auto": "自动",
+        "title": "ICCControl 面板",
+        "layout": {
+            "tab-and-link": "标签和链接",
+            "tab": "标签",
+            "link": "链接",
+            "group": "组",
+            "edit": "编辑",
+            "spacer": "隔板",
+            "layout": "布局",
+            "layout-editor": "面板布局编辑器",
+            "width": "宽度",
+            "auto": "自动调整尺寸",
+            "manual": "手动调整尺寸"
+        },
+        "theme": {
+            "style": "样式",
+            "custom-profile": "自定义配置文件",
+            "custom-profile-name": "无标题主题 1",
+            "base-settings": "基础设置",
+            "page-settings": "页面设置",
+            "page": {
+                "title": "标题栏背景",
+                "page": "页面背景",
+                "side": "侧栏背景"
+            },
+            "group-settings": "组设置",
+            "group": {
+                "text": "组文本",
+                "border": "组边界",
+                "background": "组背景"
+            },
+            "widget-settings": "部件设置",
+            "widget": {
+                "text": "部件文本",
+                "colour": "部件颜色",
+                "background": "部件背景"
+            }
+        },
+        "style": {
+            "light": "亮色（默认）",
+            "dark": "暗色",
+            "custom": "自定义",
+            "primary": "主要",
+            "accents": "着重",
+            "background": "背景",
+            "warnings": "警告",
+            "palette": "亮色 / 暗色"
+        },
+        "base": {
+            "colour": "颜色",
+            "font": "字体"
+        },
+        "font": {
+            "system": "系统字体 (默认)"
+        },
+        "site": {
+            "title": "ICCControl 面板",
+            "date-format": "DD/MM/YYYY"
+        },
+        "title-bar": {
+            "show": "显示标题栏",
+            "hide": "隐藏标题栏"
+        },
+        "swipe": {
+            "no-swipe": "标签之间无滑动",
+            "allow-swipe": "允许在选项卡之间滑动",
+            "allow-swipe-mouse": "允许在选项卡之间滑动（+鼠标）",
+            "show-menu": "滑动打开/关闭菜单"
+        },
+        "lock": {
+            "clicked": "单击显示侧菜单",
+            "locked": "始终显示侧菜单",
+            "locked-icon": "始终仅显示图标"
+        },
+        "temp": {
+            "allow-theme": "ICCControl 主题",
+            "no-theme": "在ui_template中使用Angular主题",
+            "none": "任意Angular主题"
+        }
+    }
+}

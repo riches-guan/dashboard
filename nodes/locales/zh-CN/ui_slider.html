@@ -1,0 +1,11 @@
+<script type="text/html" data-help-name="ui_slider">
+    <p>将滑块部件添加到用户界面。</p>
+	<p>用户可以在限制值（<b>min</b>和<b>max</b>）之间更改其值。每次值更改都会生成一条消息，其值设置为<b>payload</b>。</p>
+    <p>通过设置高度大于宽度的大小，可以创建垂直滑块。</p>
+    <p>通过将最小值设置为大于最大值，可以反转滑块。例如最小100、最大0。</p>
+    <p>如果指定了<b>Topic</b>，它将被添加为<code>msg.Topic</code>。</p>
+    <p>输入的<code>msg.appay</code>将被转换为数字，并用于预设值。如果转换失败，将使用<b>min</b>值，它将更新用户界面。如果值发生变化，它也将传递给输出。</p>
+    <p>标签也可以通过设置消息属性来设置属性名称的字段，例如<code>{{msg.topic}}</code>。</p>
+    <p>将<code>msg.enabled</code>设置为<code>false</code]将禁用滑块输出。</p>
+    <p>如果指定了<b>Class</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

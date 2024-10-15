@@ -1,0 +1,17 @@
+<script type="text/html" data-help-name="ui_form">
+    <p>将表单添加到用户界面。</p>
+    <p>有助于在<code>msg.appayload</code>中从用户那里收集多个值，并将其作为对象单击提交按钮</p>
+    <p>使用添加元素按钮可以添加多个输入元素</p>
+    <p>每个元素包含以下组件:</p>
+    <ul>
+        <li> <b>label</b>：将成为用户界面中元素标签的值</li>
+        <li> <b>Name</b> : 表示<code>msg.appayload</code>中的键（变量名），其中存在相应元素的值</li>
+        <li> <b>Type</b> : 下拉选项选择输入元素的类型</li>
+        <li> <b>Required</b> : 打开后，用户必须在提交之前提供值</li>
+        <li> <b>Rows</b> : 用于多行文本输入的UI行数</li>
+        <li> <b>Delete</b> : 从窗体中删除当前元素</li>
+    </ul>
+    <p>可选地，<b>Topic</b>字段可用于设置<code>msg.Topic</code>属性。</p>
+    <p>通过将“取消”按钮的值设置为空，可以隐藏该按钮 "".</p>
+    <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

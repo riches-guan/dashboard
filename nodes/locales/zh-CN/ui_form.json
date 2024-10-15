@@ -1,0 +1,35 @@
+{
+  "ui_form": {
+    "label": {
+      "group": "组",
+      "size": "尺寸",
+      "label": "标签",
+      "optionalLabel": "可选标签",
+      "formElements": "表单元素",
+      "type": "类型",
+      "required": "需要",
+      "rows": "Ui行",
+      "remove": "删除",
+      "egName": "例如. 名称",
+      "egName2": "例如. 名称",
+      "text": "文本",
+      "multiline": "多行",
+      "number": "编号",
+      "email": "E-mail",
+      "password": "密码",
+      "checkbox": "复选框",
+      "switch": "转换",
+      "date": "日期",
+      "time": "时间",
+      "element": "增加元素",
+      "buttons": "按钮",
+      "submitButtonText": "提交按钮文本",
+      "cancelButtonText": "取消按钮文本",
+      "topic": "主题",
+      "optionalMsgTopic": "可选 msg.topic",
+      "splitLayout":"将表单元素放置在两列中",
+      "className": "类",
+      "classNamePlaceholder": "部件的可选CSS类名"
+    }
+  }
+}

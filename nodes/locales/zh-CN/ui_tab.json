@@ -1,0 +1,21 @@
+{
+    "ui_tab" : {
+        "label" : {
+            "home" : "主页",
+            "tab" : "选项",
+            "name" : "名称",
+            "icon" : "图标",
+            "state" : "状态",
+            "navmenu" : "导航。菜单",
+            "enabled" : "启用",
+            "disabled" : "禁用",
+            "visible" : "可见",
+            "hidden" : "隐藏"
+        },
+        "info": {
+            "disabled": " 选项卡在面板中处于非活动状态。",
+            "hidden": " 选项卡未显示在导航菜单中。"
+        },
+        "tip" : "<b>图标</b>字段可以是<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>设计图标</a><i>（例如‘检查’、‘关闭’）</i>或是<a href=”https://fontawesome.com/v4.7.0/icons/“target=”_blank“>字体图标</a><i>（例如‘fa-fire’）</i>，或是<a href=”https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md“target=”_blank“>天气图标</a><i>（例如‘wi-wu sunny’）</i>。</p><p>如果在图标名称中添加‘mi-’，则可以使用全套谷歌素材图标。例如‘mi-videogame_asset’</p>"
+    }
+}

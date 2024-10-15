@@ -1,0 +1,13 @@
+<script type="text/html" data-help-name="ui_chart">
+    <p>在图表上绘制输入值。这可以是基于时间的折线图、条形图（垂直或水平）或饼图。</p>
+    <p>每个输入的<code>msg.appay</code>值都将被转换为一个数字。如果转换失败，则忽略该消息。</p>
+    <p>最小和最大<b>Y</b>轴值是可选的。图形将自动缩放到接收到的任何值。</p>
+    <p>通过在每条输入消息上使用不同的<code>msg.topic</code>值，可以在同一图表上显示多个系列。使用<code>msg.label</code>属性可以显示同一系列的多个条形图。</p>
+    <p><b>X</b>轴定义了一个时间窗口或要显示的最大点数。旧数据将自动从图表中删除。轴标签可以使用a<a href=“https://momentjs.com/docs/#/displaying/format/“target=”_blank“>Moment.js时间格式的</a>字符串。</p>
+    <p>输入一个包含空白数组<code>[]</code>的<code>消息payload</code]将清除图表。</p>
+    <p>请参见<b><a href=“https://github.com/node-red/node-red-dashboard/blob/master/Charts.md“target=”_new“>此信息</a></b>了解如何对要作为完整图表传递的数据进行预格式化。</p>
+    <p><b>Blank label</b>字段可用于在收到任何有效载荷之前显示一些文本。</p>
+    <p>标签也可以通过设置消息属性来设置属性名称的字段，例如<code>{{msg.topic}}</code>。</p>
+    <p>节点输出包含一个图表状态数组，如果需要，可以持久化该数组。这可以传递到图表节点以重新显示持久数据。</p>
+    <p>如果指定了<b>Class</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

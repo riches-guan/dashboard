@@ -1,0 +1,16 @@
+{
+    "ui_link" : {
+        "label" : {
+            "name" : "名称",
+            "link" : "链接",
+            "icon" : "图标",
+            "open-in" : "Open in",
+            "new-tab" : "新标签页",
+            "this-tab" : "此选项卡",
+            "iframe" : "iframe",
+            "className": "类",
+            "classNamePlaceholder": "部件的可选CSS类名"
+        },
+        "tip" : "<b>Icon</b>字段可以是<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>设计图标</a><i>（例如‘check’、‘close’）</i>或<a href=”https://fontawesome.com/v4.7.0/icons/“target=”_blank“>字体图标</a><i>（例如‘fa-fire’）</i>，或<a href=”https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md“target=”_blank“>天气图标</a><i>（例如‘wi-wu sunny’）</i>。</p><p>如果在图标名称中添加‘mi-’，则可以使用全套谷歌图标。例如‘mi-videogame_asset’</p>"
+    }
+}

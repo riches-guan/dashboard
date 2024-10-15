@@ -1,0 +1,14 @@
+<script type="text/html" data-help-name="ui_audio">
+    <p>在面板中播放音频或文本转语音（TTS）。</p>
+    <p>要工作，面板网页必须打开。</p>
+    <p>预期<code>msg.appay</code>包含<b>wav</b>或<b>mp3</b>文件的缓冲区。</p>
+    <p>如果您的浏览器原生支持文本转语音，那么<code>msg.epayload</code>也可以是<b>string</b>，可以大声朗读。</p>
+    <p>可选地将<code>msg.level</code>从0设置为100将音量从0更改为100%。默认值为100%。在音频模式下，您可以增加到300，但可能会出现失真。</p>
+    <p>当<code>msg.reset</code>的值为<code>true</code>时，当前音频片段的播放将停止。</p>
+    <p><b节点状态</b>反映当前播放状态:
+    <ul>
+        <li><b>开始:</b> 音频片段回放已经开始。</li>
+        <li><b>重置:</b> 音频片段回放已被重置（即在完成之前停止）。</li>
+    </ul>
+    音频片段播放完成后，节点状态将自动清除。</p>
+</script>

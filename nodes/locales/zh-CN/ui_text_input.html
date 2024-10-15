@@ -1,0 +1,14 @@
+<script type="text/html" data-help-name="ui_text_input">
+  <p>将文本输入字段添加到用户界面。模式可以是常规文本、电子邮件或颜色选择器。</p>
+  <p>任何输入都以<code>msg.payload</code>的形式发送。如果设置为“传递模式”，则如果到达的<code>msg.payload</code>与输入字段中的现有文本不同，则将使用该<code>msg.payload</code>。这允许您预设输入字段的文本。</p>
+  <p><b>延迟</b><i>（默认值：300ms）</i>设置发送输出前的时间量（毫秒）。
+    设置为<code>0</code>等待“Enter”或“Tab”键发送。Enter将发送有效载荷，但保持焦点。
+    选项卡将发送有效载荷并移动到下一个字段。点击其他地方也会发送有效载荷。</p>
+  <p>如果地址无效，电子邮件模式将显示为红色，并返回undefined。</p>
+  <p>时间输入类型返回从午夜开始的毫秒数。</p>
+  <p>并非所有浏览器都支持<i>周</i>和<i>月</i>输入类型，并可能返回<i>未定义的</i>。
+    请在使用前测试您的目标浏览器。</p>
+  <p>如果指定了<b>主题</b>，它将被添加为<code>msg.Topic</code>。</p>
+  <p>将<code>msg.enabled</code>设置为<code>false</code]将禁用输入。</p>
+  <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

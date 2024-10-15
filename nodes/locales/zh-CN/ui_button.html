@@ -1,0 +1,15 @@
+<script type="text/html" data-help-name="ui_button">
+    <p>在用户界面中添加一个按钮。</p>
+    <p>单击该按钮会生成一条消息，其中<code>msg.payload</code>设置为<b>有效载荷</b>字段。如果没有指定有效载荷，则使用节点id。</p>
+	<p><b>尺寸</b>默认为3乘1。</p>
+    <p><b>图标</b>可以定义为<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>设计图标</a>
+    <i>(例如 'check', 'close')</i> 或者 <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">字体图标</a>
+    <i>(例如 'fa-fire')</i>, 或者 <a href="https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md">天气图标</a>.
+    如果你在图标名称中添加“mi-”，你就可以使用全套谷歌素材图标。例如“mi-videogame_asset”。</p>
+    <p>可以设置文本和背景的颜色。它们也可以通过消息属性进行设置，将字段设置为属性的名称，例如<code>{{background}}</code>。您不需要在前面添加<i>消息</i> 属性名称的一部分。</p>
+    <p>标签和图标也可以通过消息属性设置，将字段设置为属性的名称，例如<code>{{topic}</code>或<code>{myicon}</code>。</p>
+    <p>如果设置为直通模式，输入端收到的消息将像按下按钮一样。输出有效载荷将如节点配置中所定义。</p>
+    <p>传入的<b>主题</b>字段可用于设置输出的<code>msg.topic</code>属性。</p>
+    <p>将<code>msg.enabled</code>设置为<code>false</code>将禁用该按钮。</p>
+    <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

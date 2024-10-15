@@ -1,0 +1,46 @@
+<script type="text/html" data-help-name="ui_template">
+    <p>模板部件可以包含任何有效的html和Angular/Angular Material指令。</p>
+    <p>此节点可用于创建动态用户界面元素，该元素根据输入消息更改其外观，并可以向ICCControl发回消息。</p>
+    <p><b>例如:</b><br>
+    <pre style="font-size:smaller;">&lt;div layout=&quot;row&quot; layout-align=&quot;space-between&quot;&gt;
+  &lt;p&gt;The number is&lt;/p&gt;
+  &lt;font color=&quot;{{((msg.payload || 0) % 2 === 0) ? 'green' : 'red'}}&quot;&gt;
+    {{(msg.payload || 0) % 2 === 0 ? 'even' : 'odd'}}
+  &lt;/font&gt;
+&lt;/div&gt;</pre>
+    不管收到的<code>msg.payload</code>中的数字是偶数还是奇数，都将显示。如果数字是偶数，它也会将文本的颜色更改为绿色，如果数字是奇数，它也将更改为红色。<br/>
+    下一个示例显示了如何为模板设置一个唯一的id，选择默认的主题颜色，并监视任何传入的消息。</p>
+    <pre style="font-size:smaller;">
+&lt;div id="{{'my_'+$id}}" style="{{'color:'+theme.base_color}}"&gt;Some text&lt;/div&gt;
+&lt;script&gt;
+(function(scope) {
+  scope.$watch('msg', function(msg) {
+    if (msg) {
+      // Do something when msg arrives
+      $("#my_"+scope.$id).html(msg.payload);
+    }
+  });
+})(scope);
+&lt;/script&gt;</pre>
+    <p>以这种方式制作的模板可以复制并保持彼此独立。</p>
+    <p><b>发送消息:</b><br>
+    <pre style="font-size:smaller;">
+&lt;script&gt;
+var value = "hello world";
+// or overwrite value in your callback function ...
+this.scope.action = function() { return value; }
+&lt;/script&gt;
+&lt;md-button ng-click=&quot;send({payload:action()})&quot;&gt;
+    点击我发送 hello world
+&lt;/md-button&gt;</pre>
+    将显示一个按钮，单击该按钮将发送一条消息，其中包含有效载荷<code>“Hello world”</code>。</p>
+    <p><b>使用<code>msg.template</code>：</b><br>
+        您还可以通过<code>msg.template</code>定义模板内容，因此您可以使用外部文件作为示例。<br>
+        如果模板已更改，则将在输入时重新加载。<br>
+        当存在<Code>msg.Template</Code>时，在Template字段中编写的代码将被忽略。</p>
+    <p>以下图标字体可用：<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>设计图标</a>
+        <i> （例如“检查”、“关闭”）</i>或是<a href=“https://fontawesome.com/v4.7.0/icons/“target=”_blank“>字体图标</a>
+        <i> （例如“fa fire”）</i>，或是<a href=“https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md“>天气图标</a>。
+        如果在图标名称中添加“mi-”，则可以使用全套谷歌材质图标。例如“mi-videogame_asset”</p>
+    <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

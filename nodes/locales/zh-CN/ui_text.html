@@ -1,0 +1,14 @@
+<script type="text/html" data-help-name="ui_text">
+    <p>将在用户界面上显示一个不可编辑的文本字段。</p>
+    <p>每个收到的<code>msg.payload</code>都将根据提供的<b>值格式</b>更新文本。</p>
+    <p><b>值格式</b>字段可用于更改显示的格式，并且可以包含有效的HTML和
+        <a href=“https://scotch.io/tutorials/all-about-the-built-in-angularjs-filters“target=”_blank“>角度过滤器</a>。</p>
+    <p>例如: <code>{{value | uppercase}} &amp;deg;</code> 将有效载荷文本大写并添加度数符号。</p>
+    <p>标签也可以通过消息属性设置，将字段设置为属性的名称，例如<code>{{msg.topic}}</code>。</p>
+    <p>以下图标字体也可用：<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>材料图标</a>
+        <i> （例如“检查”、“关闭”）</i>或a<a href=“https://fontawesome.com/v4.7.0/icons/“target=”_blank“>字体图标</a>
+        <i> （例如“fa fire”）</i>，或a<a href=“https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md“>天气图标</a>。
+        如果你在图标名称中添加“mi-”，你就可以使用全套谷歌素材图标。例如“mi-videogame_asset”。</p>
+    <p>该小部件还有一个<code>nr-dashboard-widget类-{The_widget_label_with_underscores}</code>，如果需要，可以用于其他样式。您可能需要使用<i>！important</i>标志覆盖主题。</p>
+    <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

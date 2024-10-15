@@ -1,0 +1,14 @@
+<script type="text/html" data-help-name="ui_switch">
+    <p>在用户界面中添加开关。</p>
+	<p>开关状态的每次更改都会生成一个带有指定值的<b>On</b>和<b>Off</b>的<code>msg.payload</code>。</p>
+    <p><b>开启/关闭颜色</b>和<b>打开/关闭图标</b>是可选字段。如果它们都存在，则默认切换开关将被替换为相关图标及其各自的颜色。</p>
+    <p><b>开/关图标</b>字段可以是a<a href=“https://klarsys.github.io/angular-material-icons/“target=”_blank“>设计图标</a>
+    <i>(例如. '检查', '关闭')</i> 或是 <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">字体图标</a>
+    <i>(例如. 'fa-fire')</i>, 或是 <a href="https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md">天气图标</a>.
+        如果你在图标名称中添加“mi-”，你就可以使用全套谷歌图标。 例如 'mi-videogame_asset'.</p>
+    <p>在传递模式下，开关状态可以通过传入的具有指定值的<code>msg.payload</code>更新，这些值还必须与指定的类型（数字、字符串等）匹配。当不处于直通模式时，图标可以跟踪输出的状态或输入的msg.payload，以提供闭环反馈。</p>
+    <p>标签也可以通过消息属性设置，将字段设置为属性的名称，例如<code>{{msg.topic}}</code>。</p>
+    <p>如果指定了<b>主题</b>，它将作为<code>msg.Topic</code>添加到输出中。</p>
+    <p>将<code>msg.enabled</code>设置为<code>false</code>将禁用开关部件。</p>
+    <p>如果指定了<b>类</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>

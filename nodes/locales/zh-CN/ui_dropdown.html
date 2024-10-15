@@ -1,0 +1,13 @@
+<script type="text/html" data-help-name="ui_dropdown">
+    <p>将下拉选择框添加到用户界面。</p>
+    <p>可以根据需要添加多个值/标签对。如果未指定标签，则该值将用于两者。</p>
+    <p>所选项目的配置值将以<code>msg.appayload</code>的形式返回。</p>
+    <p>将<code>msg.appay</code>设置为其中一个项目值将预设下拉列表中的选项。如果使用多选选项，则有效载荷应该是一个值数组。</p>
+    <p>如果存在<code>msg.resetSearch</code>属性并将其设置为<i>true</i>，则可以删除用户搜索词（可选）。</p>
+    <p>可选的，<b>Topic</b>字段可用于设置<code>msg.Topic</code>属性。</p>
+    <p>可以通过输入包含数组的<code>msg.Options</code>来配置选项。如果只是文本，则值将与标签相同，否则您可以通过以下方式指定两者使用<code>“label”：“value”</code>对象对：</p>
+    <code>[ "选择 1", "选择 2", {"选择 3":"3"} ]</code>
+    <p></p>
+    <p>如果启用了“允许多选”输出选项，则结果将以数组而不是字符串的形式返回。</p>
+    <p>如果指定了<b>Class</b>，它将被添加到父卡中。通过这种方式，您可以使用自定义CSS对卡片及其内部元素进行样式设置。通过设置<code>msg.className</code>字符串属性，可以在运行时设置Class。</p>
+</script>
