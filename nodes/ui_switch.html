@@ -1,0 +1,182 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ui_switch',{
+        category: RED._("node-red-dashboard/ui_base:ui_base.label.category"),
+        color: 'rgb(176, 223, 227)',
+        defaults: {
+            name: {value: ''},
+            label: {value: '开关'},
+            tooltip: {value: ''},
+            group: {type: 'ui_group', required: true},
+            order: {value: 0},
+            width: {value: 0, validate: function(v) {
+                    var width = v||0;
+                    var currentGroup = $('#node-input-group').val()||this.group;
+                    var groupNode = RED.nodes.node(currentGroup);
+                    var valid = !groupNode || +width <= +groupNode.width;
+                    $("#node-input-size").toggleClass("input-error",!valid);
+                    return valid;
+                }
+            },
+            height: {value: 0},
+            passthru: {value: true},
+            decouple: {value: "false"},
+            topic: {value: 'topic', validate: (RED.validators.hasOwnProperty('typedInput')?RED.validators.typedInput('topicType'):function(v) { return true})},
+            topicType: {value: 'msg'},
+            style: {value: ''},
+            onvalue: {value: true, required:true, validate: (RED.validators.hasOwnProperty('typedInput')?RED.validators.typedInput('onvalueType'):function(v) { return true})},
+            onvalueType: {value: 'bool'},
+            onicon: {value: '' },
+            oncolor: {value: ''},
+            offvalue: {value: false, required:true, validate: (RED.validators.hasOwnProperty('typedInput')?RED.validators.typedInput('offvalueType'):function(v) { return true})},
+            offvalueType: {value: 'bool'},
+            officon: {value: ''},
+            offcolor: {value: ''},
+            animate: {value: false},
+            className: {value: ''}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "ui_switch.png",
+        paletteLabel: '开关',
+        label: function() { return this.name || (~this.label.indexOf("{{") ? null : this.label) || '开关'; },
+        labelStyle: function() { return this.name?"node_label_italic":""; },
+        oneditprepare: function() {
+            $("#node-input-size").elementSizer({
+                width: "#node-input-width",
+                height: "#node-input-height",
+                group: "#node-input-group"
+            });
+            $('#node-input-custom-icons').on("change", function() {
+                if ($('#node-input-custom-icons').val() === "default") {
+                    $(".form-row-custom-icons").hide();
+                }
+                else {
+                    $(".form-row-custom-icons").show();
+                }
+            });
+
+            if (this.onicon !== "" || this.oncolor !== "" || this.officon !=="" || this.offcolor !== "") {
+                $('#node-input-custom-icons').val('custom');
+            }
+            else {
+                $(".form-row-custom-icons").hide();
+                $('#node-input-custom-icons').change();
+            }
+
+            $('#node-input-onvalue').typedInput({
+                default: 'str',
+                typeField: $("#node-input-onvalueType"),
+                types: ['str','num','bool','json','bin','date','flow','global']
+            });
+
+            $('#node-input-offvalue').typedInput({
+                default: 'str',
+                typeField: $("#node-input-offvalueType"),
+                types: ['str','num','bool','json','bin','date','flow','global']
+            });
+
+            $('#node-input-topic').typedInput({
+                default: 'str',
+                typeField: $("#node-input-topicType"),
+                types: ['str','msg','flow','global']
+            });
+
+            $('#node-input-passthru').on("change", function() {
+                if (this.checked) {
+                    $('.form-row-decouple').hide();
+                    $('#node-input-decouple').val("false");
+                }
+                else {
+                    $('.form-row-decouple').show();
+                }
+            });
+        },
+        oneditsave: function() {
+            if ($('#node-input-custom-icons').val() === 'default') {
+                $('#node-input-onicon').val('');
+                $('#node-input-officon').val('');
+                $('#node-input-oncolor').val('');
+                $('#node-input-offcolor').val('');
+            }
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ui_switch">
+	<div class="form-row">
+        <label for="node-input-group"><i class="fa fa-table"></i> 组</label>
+        <input type="text" id="node-input-group">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-object-group"></i> 尺寸</label>
+        <input type="hidden" id="node-input-width">
+        <input type="hidden" id="node-input-height">
+        <button class="editor-button" id="node-input-size"></button>
+    </div>
+    <div class="form-row">
+        <label for="node-input-label"><i class="fa fa-i-cursor"></i> 标签</label>
+        <input type="text" id="node-input-label">
+    </div>
+    <div class="form-row">
+        <label for="node-input-tooltip"><i class="fa fa-info-circle"></i> 工具提示</label>
+        <input type="text" id="node-input-tooltip" placeholder="可选工具提示">
+    </div>
+    <div class="form-row">
+        <label for="node-input-custom-icons"><i class="fa fa-picture-o"></i> 图标</label>
+        <select id="node-input-custom-icons" style="width:35%">
+            <option value="default">默认</option>
+            <option value="custom">自定义</option>
+        </select>
+        <span style="width:auto; padding-left:20px" class="form-row-custom-icons" for="node-input-animate"> 动画
+        <input type="checkbox" checked id="node-input-animate" style="display:inline-block; width:auto; vertical-align:baseline;"></span>
+    </div>
+    <div class="form-row form-row-custom-icons">
+        <label for="node-input-onicon" style="text-align:right;"><i class="fa fa-toggle-on"></i> 启用图标</label>
+        <input type="text" id="node-input-onicon" style="width:120px">
+        <label for="node-input-oncolor" style="width:50px; text-align:right;">颜色</label>
+        <input type="text" id="node-input-oncolor" style="width:120px">
+    </div>
+    <div class="form-row form-row-custom-icons">
+        <label for="node-input-officon" style="text-align:right;"><i class="fa fa-toggle-off"></i> 禁用图标</label>
+        <input type="text" id="node-input-officon" style="width:120px">
+        <label for="node-input-offcolor" style="width:50px; text-align:right;">颜色</label>
+        <input type="text" id="node-input-offcolor" style="width:120px">
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-passthru"><i class="fa fa-arrow-right"></i> 如果有效载荷与有效状态匹配，则传递<code>msg</code>: </label>
+        <input type="checkbox" checked id="node-input-passthru" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row form-row-decouple">
+        <label for="node-input-decouple"><i class="fa fa-toggle-on"></i> 标志</label>
+        <select id="node-input-decouple" style="display: inline-block; vertical-align: middle; width:70%;">
+            <option value="false">开关图标显示输出状态</option>
+            <option value="true">开关图标显示输入状态</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-onvalue"><i class="fa fa-envelope-o"></i> 当点击时, 发送:</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-onvalue" style="padding-left:25px; margin-right:-25px">启用有效载荷</label>
+        <input type="text" id="node-input-onvalue" style="width:70%">
+        <input type="hidden" id="node-input-onvalueType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-offvalue" style="padding-left:25px; margin-right:-25px">禁用有效载荷</label>
+        <input type="text" id="node-input-offvalue" style="width:70%">
+        <input type="hidden" id="node-input-offvalueType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic" style="padding-left:25px; margin-right:-25px">主题</label>
+        <input type="text" id="node-input-topic">
+        <input type="hidden" id="node-input-topicType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-className"><i class="fa fa-code"></i>  类</label>
+        <input type="text" id="node-input-className" placeholder="部件的可选CSS类名"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 名称</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>

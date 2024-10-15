@@ -1,0 +1,163 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ui_colour_picker',{
+        category: RED._("node-red-dashboard/ui_base:ui_base.label.category"),
+        color: 'rgb(176, 223, 227)',
+        defaults: {
+            name: {value: ''},
+            label: {value: ''},
+            group: {type: 'ui_group', required: true},
+            format: {value: 'hex'},
+            outformat: {value: 'string'},
+            showSwatch: {value: true},
+            showPicker: {value: false},
+            showValue: {value: false},
+            showHue: {value: false},
+            showAlpha: {value: false},
+            showLightness: {value: true},
+            square: {value: "false"},
+            dynOutput: {value: "false"},
+            order: {value: 0},
+            width: {value: 0, validate: function(v) {
+                    var width = v||0;
+                    var currentGroup = $('#node-input-group').val()||this.group;
+                    var groupNode = RED.nodes.node(currentGroup);
+                    var valid = !groupNode || +width <= +groupNode.width;
+                    $("#node-input-size").toggleClass("input-error",!valid);
+                    return valid;
+                }
+            },
+            height: {value: 0},
+            passthru: {value: true},
+            topic: {value: 'topic', validate: (RED.validators.hasOwnProperty('typedInput')?RED.validators.typedInput('topicType'):function(v) { return true})},
+            topicType: {value: 'msg'},
+            className: {value: ''}
+        },
+        inputs:1,
+        outputs:1,
+        outputLabels: function() { return this.format; },
+        icon: "ui_colour_picker.png",
+        paletteLabel: '色彩容器',
+        label: function() { return this.name || (~this.label.indexOf("{{") ? null : this.label) || '色彩容器'; },
+        labelStyle: function() { return this.name?"node_label_italic":""; },
+        oneditprepare: function() {
+            if (this.square === undefined) {
+                this.square = "false";
+                $("#node-input-square").val("false");
+            }
+            $("#node-input-square").on("change", function() {
+                if ($("#node-input-square").val() === "false") {
+                    $("#node-input-showLightness").prop('checked', true);
+                    $("#node-input-showHue").prop('checked', false);
+                }
+                else {
+                    $("#node-input-showLightness").prop('checked', false);
+                    $("#node-input-showHue").prop('checked', true);
+                }
+            });
+            $("#node-input-size").elementSizer({
+                width: "#node-input-width",
+                height: "#node-input-height",
+                group: "#node-input-group"
+            });
+            $("#node-input-format").on("change", function() {
+                if ($(this).val() === "hex") {
+                    $("#node-alpha-control").hide();
+                }
+                else {
+                    $("#node-alpha-control").show();
+                }
+            });
+            $('#node-input-topic').typedInput({
+                default: 'str',
+                typeField: $("#node-input-topicType"),
+                types: ['str','msg','flow','global']
+            });
+        },
+        oneditsave: function() {
+            if (!$("#node-input-showPicker").is(':checked') && !$("#node-input-showValue").is(':checked')) {
+                $("#node-input-showSwatch").prop('checked', true);
+                this.showSwatch = true;
+            }
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ui_colour_picker">
+    <div class="form-row">
+        <label for="node-input-group"><i class="fa fa-table"></i> 组</label>
+        <input type="text" id="node-input-group">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-object-group"></i> 尺寸</label>
+        <input type="hidden" id="node-input-width">
+        <input type="hidden" id="node-input-height">
+        <button class="editor-button" id="node-input-size"></button>
+    </div>
+    <div class="form-row">
+        <label for="node-input-label"><i class="fa fa-i-cursor"></i> 标签</label>
+        <input type="text" id="node-input-label">
+    </div>
+    <div class="form-row">
+        <label for="node-input-format"><i class="fa fa-keyboard-o"></i> 格式</label>
+        <select id="node-input-format" style="width:156px;">
+            <option value="hex">hex</option>
+            <option value="hex8">hex8</option>
+            <option value="hsl">hsl</option>
+            <option value="hsv">hsv</option>
+            <option value="rgb">rgb</option>
+        </select>
+        <select id="node-input-square" style="width:130px; margin-left:30px">
+            <option value="false">round</option>
+            <option value="true">square</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label>&nbsp;</label> 显示色调滑块 : <input type="checkbox" id="node-input-showHue" style="display:inline-block; width:auto; vertical-align:baseline;">
+        <br/>
+        <label>&nbsp;</label> 显示亮度滑块 : <input type="checkbox" id="node-input-showLightness" style="display:inline-block; width:auto; vertical-align:baseline;">
+        <br/>
+        <span id="node-alpha-control"><label>&nbsp;</label> Show transparency slider : <input type="checkbox" id="node-input-showAlpha" style="display:inline-block; width:auto; vertical-align:baseline;"></span>
+    </div>
+    <div class="form-row">
+        如果宽度为4或更大:<br/>
+        <label>&nbsp;</label>
+        始终显示样本 : <input type="checkbox" checked id="node-input-showSwatch" style="display:inline-block; width:auto; vertical-align:top;">
+        <br/>
+        <label>&nbsp;</label>
+        始终显示选择器 : <input type="checkbox" checked id="node-input-showPicker" style="display:inline-block; width:auto; vertical-align:top;">
+        <br/>
+        <label>&nbsp;</label>
+        始终显示值字段 : <input type="checkbox" checked id="node-input-showValue" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-passthru"><i class="fa fa-arrow-right"></i> 如果<code>msg</code>在输入时到达，则传递到输出: </label>
+        <input type="checkbox" checked id="node-input-passthru" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-dynOutput"><i class="fa fa-envelope-o"></i> 发送</label>
+        <select id="node-input-dynOutput" style="width:60%">
+            <option value="false">释放/关闭时为一个值</option>
+            <option value="true">编辑过程中的多个值</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-outformat" style="padding-left: 25px; margin-right: -25px">有效载荷</label>
+        <select id="node-input-outformat" style="width:60%">
+            <option value="string">当前值为字符串</option>
+            <option value="object">当前值为一个对象</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic" style="padding-left: 25px; margin-right: -25px">主题</label>
+        <input type="text" id="node-input-topic" placeholder="可选主题">
+        <input type="hidden" id="node-input-topicType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-className"><i class="fa fa-code"></i>  类</label>
+        <input type="text" id="node-input-className" placeholder="部件的可选CSS类名"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> 名称</label>
+        <input type="text" id="node-input-name">
+    </div>
+</script>

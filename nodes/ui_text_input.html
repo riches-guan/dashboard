@@ -1,0 +1,117 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ui_text_input',{
+        category: RED._("node-red-dashboard/ui_base:ui_base.label.category"),
+        color: 'rgb(176, 223, 227)',
+        defaults: {
+            name: {value: ''},
+            label: {value: ''},
+            tooltip: {value: ''},
+            group: {type: 'ui_group', required: true},
+            order: {value: 0},
+            width: {value: 0, validate: function(v) {
+                    var width = v||0;
+                    var currentGroup = $('#node-input-group').val()||this.group;
+                    var groupNode = RED.nodes.node(currentGroup);
+                    var valid = !groupNode || +width <= +groupNode.width;
+                    $("#node-input-size").toggleClass("input-error",!valid);
+                    return valid;
+                }
+            },
+            height: {value: 0},
+            passthru: {value: true},
+            mode: {value: '文本', required: true},
+            delay: {value: 300, validate: RED.validators.number()},
+            topic: {value: 'topic', validate: (RED.validators.hasOwnProperty('typedInput')?RED.validators.typedInput('topicType'):function(v) { return true})},
+            sendOnBlur: {value: true},
+	        className: {value: ''},
+            topicType: {value: 'msg'}
+        },
+        inputs:1,
+        outputs:1,
+        outputLabels: function() { return this.mode; },
+        icon: "ui_text.png",
+        paletteLabel: '文字输入',
+        label: function() { return this.name || (~this.label.indexOf("{{") ? null : this.label) || this.mode+' 文字输入'; },
+        labelStyle: function() { return this.name?"node_label_italic":""; },
+        oneditprepare: function() {
+            $("#node-input-size").elementSizer({
+                width: "#node-input-width",
+                height: "#node-input-height",
+                group: "#node-input-group"
+            });
+            $('#node-input-topic').typedInput({
+                default: 'str',
+                typeField: $("#node-input-topicType"),
+                types: ['str','msg','flow','global']
+            });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="ui_text_input">
+	<div class="form-row">
+        <label for="node-input-group"><i class="fa fa-table"></i> 组</label>
+        <input type="text" id="node-input-group">
+    </div>
+    <div class="form-row">
+        <label><i class="fa fa-object-group"></i> 尺寸</label>
+        <input type="hidden" id="node-input-width">
+        <input type="hidden" id="node-input-height">
+        <button class="editor-button" id="node-input-size"></button>
+    </div>
+    <div class="form-row">
+        <label for="node-input-label"><i class="fa fa-i-cursor"></i> 标签</label>
+        <input type="text" id="node-input-label">
+    </div>
+    <div class="form-row">
+        <label for="node-input-tooltip"><i class="fa fa-info-circle"></i> 工具提示</label>
+        <input type="text" id="node-input-tooltip" placeholder="可选工具提示">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-keyboard-o"></i> 模式</label>
+        <select style="width:128px" id="node-input-mode">
+            <option value="text">文字输入</option>
+            <option value="email">email地址</option>
+            <option value="password">密码</option>
+            <option value="number">数字</option>
+            <option value="tel">电话输入</option>
+            <option value="color">颜色容器</option>
+            <option value="time">时间容器r</option>
+            <option value="datetime-local">日期时间容器</option>
+            <option value="week">星期容器</option>
+            <option value="month">月份容器</option>
+            <!-- <option value="date">date picker</option> -->
+        </select>
+        <label for="node-input-delay" style="text-align:right; width:100px"><i class="fa fa-clock-o"></i> 延时 (ms)</label>
+        <input type="text" style="width:58px" id="node-input-delay">
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-passthru"><i class="fa fa-arrow-right"></i> 如果<code>msg</code>在输入时到达，则传递到输出: </label>
+        <input type="checkbox" checked id="node-input-passthru" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-sendOnBlur">当焦点丢失时发送值: </label>
+        <input type="checkbox" checked id="node-input-sendOnBlur" style="display:inline-block; width:auto; vertical-align:top;">
+    </div>
+    <div class="form-row">
+        <label style="width:auto" for="node-input-payload"><i class="fa fa-envelope-o"></i> 当更改时, 发送:</label>
+    </div>
+    <div class="form-row">
+        <label style="padding-left: 25px; margin-right: -25px">有效载荷</label>
+        <label style="width:auto">当前值</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-topic" style="padding-left: 25px; margin-right: -25px">主题</label>
+        <input type="text" id="node-input-topic">
+        <input type="hidden" id="node-input-topicType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-className"><i class="fa fa-code"></i>  类</label>
+        <input type="text" id="node-input-className" placeholder="部件的可选CSS类名"/>
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name">
+    </div>
+    <div class="form-tips">将<b>延迟</b>设置为0时，等待Enter或Tab键，发送输入。</span></div>
+</script>
